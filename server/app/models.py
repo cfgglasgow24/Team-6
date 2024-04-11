@@ -94,23 +94,3 @@ class NewsletterUser(db.Model):
             "name": self.name,
             "skills": [skill.name for skill in self.skills],
         }
-
-
-class Event(db.Model):
-    __tablename__ = "event"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    description = db.Column(db.String)
-    date = db.Column(db.DateTime)
-    location = db.Column(db.String)
-    photo = db.Column(db.String)
-
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "description": self.description,
-            "date": self.date,
-            "location": self.location,
-            "photo": self.photo,
-        }
