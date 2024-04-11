@@ -102,27 +102,27 @@ const DictionaryPage: React.FC = () => {
 
     return (
         <PageTemplate title="Business English - Simplified English Dictionary">
-            <div className="mb-8">
+            <div className="my-4">
                 <h2 className="text-xl font-semibold bg-primary-500 text-black px-4 py-2 mb-2">
                     Software Engineering Definitions
                 </h2>
                 <ul className="list-disc pl-4">
                     {softwareEngineeringWords.map((wordObj, index) => (
                         <li key={index} className="text-gray-800">
-                            <strong>{wordObj.word}:</strong>{" "}
+                            <strong>{wordObj.word}:</strong>
                             {wordObj.definition}
                         </li>
                     ))}
                 </ul>
             </div>
-            <div>
+            <div className="my-4">
                 <h2 className="text-xl font-semibold bg-primary-500 text-black px-4 py-2 mb-2">
                     Data Science Definitions
                 </h2>
                 <ul className="list-disc pl-4">
                     {dataScienceWords.map((wordObj, index) => (
                         <li key={index} className="text-gray-800">
-                            <strong>{wordObj.word}:</strong>{" "}
+                            <strong>{wordObj.word}:</strong>
                             {wordObj.definition}
                         </li>
                     ))}

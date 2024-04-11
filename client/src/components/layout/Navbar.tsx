@@ -17,7 +17,6 @@ export default function Navbar() {
                 <NavLink to="/materials/dictionary">Dictionary</NavLink>
                 <NavLink to="/questionspage">Interview Prep</NavLink>
                 <NavLink to="/social-media-groups">Social Media Groups</NavLink>
-                <NavLink to="/events">Events</NavLink>
             </div>
         </nav>
     );
