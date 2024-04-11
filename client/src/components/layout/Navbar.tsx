@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { UserType } from "../types/UserType";
+import { Link } from "react-router-dom";
 
 interface NavBarComponentProps {
     handleUserTypeSelect: (userType: UserType) => void;
@@ -17,36 +18,57 @@ export default function Navbar() {
     }
 
     if (userType === UserType.REFUGEE) {
-        return <RefugeeNavbar handleUserTypeSelect={handleUserTypeSelect} />;
+        return (
+            <MainNavbar
+                handleUserTypeSelect={handleUserTypeSelect}
+                otherUserType={UserType.COMPANY}
+            />
+        );
     } else if (userType === UserType.COMPANY) {
-        return <CompanyNavbar handleUserTypeSelect={handleUserTypeSelect} />;
+        return (
+            <MainNavbar
+                handleUserTypeSelect={handleUserTypeSelect}
+                otherUserType={UserType.REFUGEE}
+            />
+        );
     } else {
         return <GetUserTypePopup handleUserTypeSelect={handleUserTypeSelect} />;
     }
 }
 
-function RefugeeNavbar({ handleUserTypeSelect }: NavBarComponentProps) {
+interface MainNavbarProps {
+    handleUserTypeSelect: (userType: UserType) => void;
+    otherUserType: UserType;
+}
+
+function MainNavbar({ handleUserTypeSelect, otherUserType }: MainNavbarProps) {
     return (
-        <nav>
-            <div>Refugee Navbar</div>
-            <button onClick={() => handleUserTypeSelect(UserType.COMPANY)}>
-                Switch to Company
-            </button>
+        <nav className="flex justify-between py-4 px-6 items-center">
+            <div className="space-x-6">
+                <Link
+                    to="/"
+                    className="text-secondary-500 hover:text-secondary-700"
+                >
+                    Home
+                </Link>
+                <Link
+                    to="/events"
+                    className="text-secondary-500 hover:text-secondary-700"
+                >
+                    Events
+                </Link>
+            </div>
+            <div>
+                <button
+                    onClick={() => handleUserTypeSelect(otherUserType)}
+                    className="px-4 py-2 text-white bg-secondary-500 rounded hover:bg-secondary-700 transition-colors duration-200 ease-in-out"
+                >
+                    Switch to {otherUserType}
+                </button>
+            </div>
         </nav>
     );
 }
-
-function CompanyNavbar({ handleUserTypeSelect }: NavBarComponentProps) {
-    return (
-        <nav>
-            <div>Company Navbar</div>
-            <button onClick={() => handleUserTypeSelect(UserType.REFUGEE)}>
-                Switch to Company
-            </button>
-        </nav>
-    );
-}
-
 function GetUserTypePopup({ handleUserTypeSelect }: NavBarComponentProps) {
     return (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
