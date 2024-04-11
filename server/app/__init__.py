@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
-app.register_blueprint(social_media_blueprint)
+app.register_blueprint(social_media_blueprint, url_prefix='/api/social-media-groups')
 
 with app.app_context():
     db.create_all()

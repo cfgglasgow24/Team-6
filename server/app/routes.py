@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from .db import  db
 from .models import SocialMediaGroup
 
-social_media_blueprint = Blueprint("api/social-media-groups", __name__)
+social_media_blueprint = Blueprint("social-media-groups", __name__)
 
 @social_media_blueprint.route('/', methods=['GET'])
 def get_social_media_groups():
