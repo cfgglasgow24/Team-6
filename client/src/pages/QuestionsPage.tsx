@@ -6,16 +6,35 @@ export default function QuestionsPage() {
     const [questions, setQuestions] = useState<Question[]>(
         [
             {
-                question:"DDD"
+                question:"Tell me about yourself"
 
             },
             {
-                question:"DDD"
+                question:"Why do you want to work here?"
+
+            },
+            {
+                question:"Why do you feel you are the right person for this position?"
+
+            },
+            {
+                question:"What did you go to university for? Why did you choose that subject?"
+
+            },
+            {
+                question:"Talk about a project you completed successfully"
+
+            },
+            {
+                question:"Explain me your toughest project and the working architecture."
 
             }
            
+            
         ]
 
+
+        
 
 
     )

@@ -47,25 +47,25 @@ function MainNavbar({ handleUserTypeSelect, otherUserType }: MainNavbarProps) {
             <div className="space-x-6">
                 <Link
                     to="/"
-                    className="text-secondary-500 hover:text-secondary-700"
+                    className="hover:text-secondary-700"
                 >
                     Home
                 </Link>
                 <Link
                     to="/events"
-                    className="text-secondary-500 hover:text-secondary-700"
+                    className="hover:text-secondary-700"
                 >
                     Events
                 </Link>
                 <Link
                     to="/questionspage"
-                    className="text-secondary-500 hover:text-secondary-700"
+                    className="hover:text-secondary-700"
                 >
                     Interview Prep
                 </Link>
                 <Link
                     to="/mentors"
-                    className="text-secondary-500 hover:text-secondary-700"
+                    className="hover:text-secondary-700"
                 >
                     Mentorship Opportunities
                 </Link>
