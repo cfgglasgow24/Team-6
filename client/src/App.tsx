@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import MentorsPage from "./pages/MentorsPage";
 
+
 export default function App() {
     return (
         <div className="flex flex-col min-h-[98vh]">
