@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { SocialMediaGroup } from "../components/types/SocialMediaGroup";
 import SocialMediaGroupForm from "../components/common/social_media_group/SocialMediaGroupForm";
+import SocialMediaGroupListing from "../components/common/social_media_group/SocialMediaGroupListing";
 
 export default function SocialMediaGroups() {
     const [groups, setGroups] = useState<SocialMediaGroup[]>([]);
@@ -31,23 +32,29 @@ export default function SocialMediaGroups() {
         fetchSocialMediaGroups();
     }, []);
 
+    const onFormSubmit = (group: SocialMediaGroup) => {
+        setGroups([...groups, group]);
+    }
+
     return (
-        <div className="text-primary-500">
-            <h2>Social Media Groups</h2>
-            <ul>
+        <div className="bg-white py-5 px-5">
+        <h2>Social Media Groups</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-8">
+            {/* <ul> */}
                 {groups &&
                     groups.map((group, index) => (
-                        <li key={index}>
-                            Group number {index}: {group.name}
-                        </li>
+                        // <li key={index}>
+                        //     Group number {index}: {group.name}
+                        // </li>
+                        <SocialMediaGroupListing key={index} group={group} />
                     ))}
-            </ul>
-
-            <button type="submit" className="btn btn-primary">
-                Add a social media group
-            </button>
-
-            <SocialMediaGroupForm />
+            {/* </ul> */}
+        </div>
+        <SocialMediaGroupForm onFormSubmit={onFormSubmit}/>
+            // <button type="submit" className="btn btn-primary">
+            //     Add a social media group
+            // </button>
+            
         </div>
     );
 }

@@ -1,4 +1,10 @@
-export default function SocialMediaGroupForm() {
+import { SocialMediaGroup } from "../../types/SocialMediaGroup";
+
+type SocialMediaGroupFormProps = {
+    onFormSubmit: (group: SocialMediaGroup) => void;
+};
+
+export default function SocialMediaGroupForm({ onFormSubmit }: SocialMediaGroupFormProps) {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -35,6 +41,8 @@ export default function SocialMediaGroupForm() {
                 throw new Error("Failed to create social media group");
             }
 
+            onFormSubmit(await response.json() as SocialMediaGroup);
+
             form.reset();
         } catch (error) {
             console.log(error);
@@ -42,47 +50,47 @@ export default function SocialMediaGroupForm() {
     };
 
     return (
-        <div className='bg-white shadow rounded-lg py-3 px-3'>
+        <div className='bg-white shadow rounded-lg py-3 px-3 max-w-md mx-auto'>
             <form onSubmit={handleSubmit} className="flex flex-col">
-                <label>Name</label>
+                <label className="text-black">Name</label>
                 <input
                     type="text"
                     name="name"
                     className="bg-secondary-50 mx-4 rounded-lg my-1"
                 />
                 
-                <label>Url</label>
+                <label className="text-black">Url</label>
                 <input
                     type="text"
                     name="url"
                     className="bg-secondary-50 mx-4 rounded-lg my-1"
                 />
                 
-                <label>Type</label>
+                <label className="text-black">Type</label>
                 <select
                     name="type"
-                    className="bg-secondary-50 mx-4 rounded-lg my-1"
+                    className="bg-secondary-50 text-black mx-4 rounded-lg my-1"
                 >
-                    <option value="WA">WA</option>
-                    <option value="TG">TG</option>
-                    <option value="FB">FB</option>
+                    <option className="text-black" value="WA">WA</option>
+                    <option className="text-black" value="TG">TG</option>
+                    <option className="text-black" value="FB">FB</option>
                 </select>
                 
-                <label>Description</label>
+                <label className="text-black">Description</label>
                 <input
                     type="text"
                     name="description"
                     className="bg-secondary-50 mx-4 rounded-lg my-1"
                 />
                 
-                <label>Purpose</label>
+                <label className="text-black">Purpose</label>
                 <input
                     type="text"
                     name="purpose"
                     className="bg-secondary-50 mx-4 rounded-lg my-1"
                 />
                 
-                <label>Creator</label>
+                <label className="text-black">Creator</label>
                 <input
                     type="text"
                     name="creator"
@@ -92,8 +100,8 @@ export default function SocialMediaGroupForm() {
                 
                 <input
                     type="submit"
-                    value="Sign Up"
-                    className="font-medium bg-primary-500 py-3 px-6 rounded-lg my-5"
+                    value="Add Social Media Group"
+                    className="font-medium text-black bg-primary-500 py-3 px-6 rounded-lg my-5"
                 />
             </form>
         </div>
