@@ -3,6 +3,10 @@ module.exports = {
     content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
     theme: {
         extend: {
+            fontFamily:{
+                primary: 'Sequel100'
+
+            },
             colors: {
                 text: {
                     50: "var(--text-50)",
