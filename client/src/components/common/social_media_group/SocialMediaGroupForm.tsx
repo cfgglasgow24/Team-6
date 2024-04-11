@@ -42,8 +42,8 @@ export default function SocialMediaGroupForm() {
     };
 
     return (
-        <div className="bg-white shadow rounded-lg py-3 px-3">
-            <form onSubmit={handleSubmit}>
+        <div className='bg-white shadow rounded-lg py-3 px-3'>
+            <form onSubmit={handleSubmit} className="flex flex-col">
                 <label>Name</label>
                 <input
                     type="text"
