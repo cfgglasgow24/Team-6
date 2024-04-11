@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { SocialMediaGroup } from "../components/types/SocialMediaGroup";
-// import axios from 'axios';
 
 export default function SocialMediaGroups() {
     const [groups, setGroups] = useState<SocialMediaGroup[]>([]);
     useEffect(() => {
-        document.title = "Social Media Groups";
         const fetchSocialMediaGroups = async () => {
             try {
                 const response = await fetch(
@@ -29,9 +27,8 @@ export default function SocialMediaGroups() {
     }, []);
 
     return (
-        <>
-            <div className="text-primary-500">Social Media Groups</div>
-
+        <div className="text-primary-500">
+            <h2>Social Media Groups</h2>
             <ul>
                 {groups &&
                     groups.map((group, index) => (
@@ -40,6 +37,6 @@ export default function SocialMediaGroups() {
                         </li>
                     ))}
             </ul>
-        </>
+        </div>
     );
 }
