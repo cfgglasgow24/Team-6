@@ -42,7 +42,7 @@ export default function MentorsPage() {
                     <MentorCard key={index} mentor={mentor} />
                 ))}
             </div>
-            <h1 className="py-6 text-2xl">Sign up to become a mentor!</h1>
+            <h1 className="text-xl font-bold ">Sign up to become a mentor!</h1>
             <MentorForm onSubmit={formOnSubmit} />
         </PageTemplate>
     );
