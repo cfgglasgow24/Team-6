@@ -38,23 +38,20 @@ export default function SocialMediaGroups() {
 
     return (
         <div className="bg-white py-5 px-5">
-        <h2>Social Media Groups</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-8">
-            {/* <ul> */}
-                {groups &&
-                    groups.map((group, index) => (
-                        // <li key={index}>
-                        //     Group number {index}: {group.name}
-                        // </li>
-                        <SocialMediaGroupListing key={index} group={group} />
-                    ))}
-            {/* </ul> */}
-        </div>
-        <SocialMediaGroupForm onFormSubmit={onFormSubmit}/>
-            // <button type="submit" className="btn btn-primary">
-            //     Add a social media group
-            // </button>
+            <h2>Social Media Groups</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-8">
+                {/* <ul> */}
+                    {groups &&
+                        groups.map((group, index) => (
+                            // <li key={index}>
+                            //     Group number {index}: {group.name}
+                            // </li>
+                            <SocialMediaGroupListing key={index} group={group} />
+                        ))}
+                {/* </ul> */}
+            </div>
             
+            <SocialMediaGroupForm onFormSubmit={onFormSubmit}/>
         </div>
     );
 }
