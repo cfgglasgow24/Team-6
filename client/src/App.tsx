@@ -8,7 +8,9 @@ import CVPage from "./pages/CVPage";
 import SocialMediaGroups from "./pages/SocialMediaGroups";
 import MentorsPage from "./pages/MentorsPage";
 import QuestionsPage from "./pages/QuestionsPage";
+
 import NewsLetterPage from "./pages/NewsLetterPage";
+
 
 export default function App() {
     return (
@@ -23,7 +25,9 @@ export default function App() {
                     />
                     <Route path="/materials/cv-template" Component={CVPage} />
                     <Route path="/mentors" Component={MentorsPage} />
+
                     <Route path="/questionspage" Component={QuestionsPage} />
+                  
                     <Route
                         path="/social-media-groups"
                         Component={SocialMediaGroups}

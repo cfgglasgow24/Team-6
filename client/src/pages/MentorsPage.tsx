@@ -5,6 +5,7 @@ import MentorForm from "../components/common/mentor/MentorForm";
 import PageTemplate from "./PageTemplate";
 
 export default function MentorsPage() {
+
     const [mentors, setMentors] = useState<Mentor[]>([]);
 
     useEffect(() => {
