@@ -24,13 +24,25 @@ class SocialMediaGroup(db.Model):
         }
 
 
+mentor_skills = db.Table(
+    "mentor_skills",
+    db.Column("id", db.String, db.ForeignKey("mentor.id"), primary_key=True),
+    db.Column("skill_id", db.Integer, db.ForeignKey("skill.id"), primary_key=True),
+)
+
+
 class Mentor(db.Model):
     __tablename__ = "mentor"
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     email = db.Column(db.String, primary_key=True)
     phone_number = db.Column(db.String)
-    region = db.Column(db.String)
-    photo = db.Column(db.String)
+    skills = db.relationship(
+        "Skill",
+        secondary=mentor_skills,
+        lazy="subquery",
+        backref=db.backref("mentors", lazy=True),
+    )
 
     def to_dict(self):
         return {
@@ -38,15 +50,12 @@ class Mentor(db.Model):
             "email": self.email,
             "phone_number": self.phone_number,
             "region": self.region,
-            "photo": self.photo,
         }
 
 
 user_skills = db.Table(
     "user_skills",
-    db.Column(
-        "email", db.String, db.ForeignKey("newsletter_user.email"), primary_key=True
-    ),
+    db.Column("id", db.String, db.ForeignKey("newsletter_user.id"), primary_key=True),
     db.Column("skill_id", db.Integer, db.ForeignKey("skill.id"), primary_key=True),
 )
 
