@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { SocialMediaGroup } from "../components/types/SocialMediaGroup";
 import SocialMediaGroupForm from "../components/common/social_media_group/SocialMediaGroupForm";
 import SocialMediaGroupListing from "../components/common/social_media_group/SocialMediaGroupListing";
+import PageTemplate from "./PageTemplate";
 
 export default function SocialMediaGroups() {
     const [groups, setGroups] = useState<SocialMediaGroup[]>([]);
@@ -34,24 +35,17 @@ export default function SocialMediaGroups() {
 
     const onFormSubmit = (group: SocialMediaGroup) => {
         setGroups([...groups, group]);
-    }
+    };
 
     return (
-        <div className="bg-white py-5 px-5">
-            <h2>Social Media Groups</h2>
+        <PageTemplate title="Social Media Groups">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-8">
-                {/* <ul> */}
-                    {groups &&
-                        groups.map((group, index) => (
-                            // <li key={index}>
-                            //     Group number {index}: {group.name}
-                            // </li>
-                            <SocialMediaGroupListing key={index} group={group} />
-                        ))}
-                {/* </ul> */}
+                {groups &&
+                    groups.map((group, index) => (
+                        <SocialMediaGroupListing key={index} group={group} />
+                    ))}
             </div>
-            
-            <SocialMediaGroupForm onFormSubmit={onFormSubmit}/>
-        </div>
+            <SocialMediaGroupForm onFormSubmit={onFormSubmit} />
+        </PageTemplate>
     );
 }

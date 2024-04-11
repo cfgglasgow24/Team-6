@@ -35,7 +35,7 @@ class Mentor(db.Model):
     __tablename__ = "mentor"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    email = db.Column(db.String, primary_key=True)
+    email = db.Column(db.String)
     phone_number = db.Column(db.String)
     skills = db.relationship(
         "Skill",
@@ -48,8 +48,8 @@ class Mentor(db.Model):
         return {
             "name": self.name,
             "email": self.email,
-            "phone_number": self.phone_number,
-            "region": self.region,
+            "phoneNumber": self.phone_number,
+            "skills": [skill.name for skill in self.skills],
         }
 
 
@@ -93,24 +93,4 @@ class NewsletterUser(db.Model):
             "email": self.email,
             "name": self.name,
             "skills": [skill.name for skill in self.skills],
-        }
-
-
-class Event(db.Model):
-    __tablename__ = "event"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    description = db.Column(db.String)
-    date = db.Column(db.DateTime)
-    location = db.Column(db.String)
-    photo = db.Column(db.String)
-
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "description": self.description,
-            "date": self.date,
-            "location": self.location,
-            "photo": self.photo,
         }
