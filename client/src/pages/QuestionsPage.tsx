@@ -8,8 +8,28 @@ export default function QuestionsPage() {
       id: 1,
       question: "Tell me about yourself",
     },
-    // Add unique identifiers (id) to each question
-    // Other questions...
+    {
+      id: 2,
+      question: "Why do you want to work here?",
+    },
+    {
+      id: 3,
+      question: "Why do you feel you are the right person for this position?",
+    },
+    {
+      id: 4,
+      question:
+        "What did you go to university for? Why did you choose that subject?",
+    },
+    {
+      id: 5,
+      question: "Talk about a project you completed successfully",
+    },
+    {
+      id: 6,
+      question:
+        "Explain me your toughest project and the working architecture.",
+    },
   ];
 
   const [inputStates, setInputStates] = useState<string[]>(
@@ -23,7 +43,7 @@ export default function QuestionsPage() {
   const handleInputChange =
     (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
       const inputText = event.target.value;
-      const isValid = inputText.length > 5;
+      const isValid = inputText.length > 20;
       setInputValidity((prevValidity) => {
         const newValidity = [...prevValidity];
         newValidity[index] = isValid;
@@ -35,20 +55,20 @@ export default function QuestionsPage() {
     };
 
   return (
-    <div className="questions-page">
-      <h1 className="page-title">Interview Prep Questions</h1>
-      <div className="questions-grid">
+    <div className="mx-3 questions-page">
+      <h1 className="text-3xl">Interview Prep Questions</h1>
+      <div className="grid">
         {questions.map((question, index) => (
-          <div key={question.id} className="question-container">
+          <div key={question.id}>
             <QuestionCard question={question} />
             <input
               type="text"
               value={inputStates[index]}
               onChange={handleInputChange(index)}
               name={`input-${index}`}
-              className={
-                inputValidity[index] ? "input-field" : "input-field invalid"
-              }
+              className={`mx-2 bg-secondary-50 border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                inputValidity[index] ? "input-field" : "border-red-500"
+              }`}
             />
             {!inputValidity[index] && (
               <p className="text-red-500 error-message">
