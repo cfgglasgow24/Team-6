@@ -11,3 +11,13 @@ class SocialMediaGroup(db.Model):
         
     def __repr__(self):
         return f'<SocialMediaGroup {self.name} by {self.creator} for {self.purpose}>'
+
+    def to_dict(self):
+        return {
+            'url': self.url,
+            'name': self.name,
+            'type': self.type,
+            'description': self.description,
+            'creator': self.creator,
+            'purpose': self.purpose
+        }
