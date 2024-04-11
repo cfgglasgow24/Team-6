@@ -2,14 +2,16 @@ interface CustomInputProps {
     value: string;
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     label: string;
+    type: string;
 }
 
 export default function CustomInput({
     value,
     handleInputChange,
     label,
+    type,
 }: CustomInputProps) {
-    const id = label.toLowerCase();
+    const id = label.toLowerCase().replace(" ", "");
     return (
         <div>
             <label
@@ -19,7 +21,7 @@ export default function CustomInput({
                 {label}
             </label>
             <input
-                type="text"
+                type={type}
                 name={id}
                 id={id}
                 value={value}

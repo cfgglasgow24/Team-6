@@ -66,27 +66,31 @@ export default function SocialMediaGroupForm({
                     value={formData.name}
                     handleInputChange={handleInputChange}
                     label="Name"
+                    type="text"
                 />
                 <CustomInput
                     value={formData.url}
                     handleInputChange={handleInputChange}
                     label="Url"
+                    type="text"
                 />
-
                 <CustomInput
                     value={formData.description}
                     handleInputChange={handleInputChange}
                     label="Description"
+                    type="text"
                 />
                 <CustomInput
                     value={formData.purpose}
                     handleInputChange={handleInputChange}
                     label="Purpose"
+                    type="text"
                 />
                 <CustomInput
                     value={formData.creator}
                     handleInputChange={handleInputChange}
                     label="Creator"
+                    type="text"
                 />
                 <input
                     type="submit"

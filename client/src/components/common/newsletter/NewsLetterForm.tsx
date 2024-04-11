@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Mentor } from "../../types/Mentor";
 import CustomInput from "../input/CustomInput";
 
 export default function NewsLetterForm() {
@@ -51,16 +50,19 @@ export default function NewsLetterForm() {
                     value={formData.name}
                     handleInputChange={handleInputChange}
                     label="Name"
+                    type="text"
                 />
                 <CustomInput
                     value={formData.email}
                     handleInputChange={handleInputChange}
                     label="Email"
+                    type="email"
                 />
                 <CustomInput
                     value={formData.skills}
                     handleInputChange={handleInputChange}
                     label="Skills"
+                    type="text"
                 />
                 <input
                     type="submit"

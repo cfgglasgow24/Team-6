@@ -43,6 +43,9 @@ export default function SocialMediaGroups() {
                         <SocialMediaGroupListing key={index} group={group} />
                     ))}
             </div>
+            <h1 className="text-xl font-bold ">
+                Add a Group for others to join!
+            </h1>
             <SocialMediaGroupForm onFormSubmit={onFormSubmit} />
         </PageTemplate>
     );

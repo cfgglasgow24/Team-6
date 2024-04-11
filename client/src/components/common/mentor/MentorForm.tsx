@@ -11,15 +11,15 @@ export default function MentorForm({ onSubmit }: MentorFormProps) {
         name: "",
         email: "",
         skills: "",
-        phoneNumber: "",
+        phonenumber: "",
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormData((prevState) => ({
+            ...prevState,
             [name]: value,
-        });
+        }));
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,7 +41,7 @@ export default function MentorForm({ onSubmit }: MentorFormProps) {
                 name: "",
                 email: "",
                 skills: "",
-                phoneNumber: "",
+                phonenumber: "",
             });
             onSubmit(responseData);
         } catch (error) {
@@ -56,22 +56,26 @@ export default function MentorForm({ onSubmit }: MentorFormProps) {
                     value={formData.name}
                     handleInputChange={handleInputChange}
                     label="Name"
-                ></CustomInput>
+                    type="text"
+                />
                 <CustomInput
                     value={formData.email}
                     handleInputChange={handleInputChange}
                     label="Email"
-                ></CustomInput>
+                    type="email"
+                />
                 <CustomInput
                     value={formData.skills}
                     handleInputChange={handleInputChange}
                     label="Skills"
-                ></CustomInput>
+                    type="text"
+                />
                 <CustomInput
-                    value={formData.phoneNumber}
+                    value={formData.phonenumber}
                     handleInputChange={handleInputChange}
                     label="Phone Number"
-                ></CustomInput>
+                    type="text"
+                />
                 <input
                     type="submit"
                     value="Sign Up"

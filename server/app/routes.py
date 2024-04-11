@@ -41,7 +41,7 @@ def add_mentor():
     name = request.json["name"]
     email = request.json["email"]
     skills = [str(skill).strip() for skill in request.json.get("skills").split(",")]
-    phone_number = request.json["phoneNumber"]
+    phone_number = request.json["phonenumber"]
 
     mentor = Mentor(
         name=name,
