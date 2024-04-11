@@ -24,6 +24,8 @@ export default function MentorsPage() {
 
     )
 
+
+
     return <body className="bg-white py-5 px-5">
         <h1 className="py-6 text-4xl">Meet the Mentors!</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-8">

@@ -57,6 +57,18 @@ function MainNavbar({ handleUserTypeSelect, otherUserType }: MainNavbarProps) {
                 >
                     Events
                 </Link>
+                <Link
+                    to="/questionspage"
+                    className="text-secondary-500 hover:text-secondary-700"
+                >
+                    Interview Prep
+                </Link>
+                <Link
+                    to="/mentors"
+                    className="text-secondary-500 hover:text-secondary-700"
+                >
+                    Mentorship Opportunities
+                </Link>
             </div>
             <div>
                 <button
