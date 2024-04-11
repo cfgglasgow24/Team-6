@@ -1,5 +1,6 @@
 import os
 from flask import Blueprint, request, jsonify
+from flask_cors import cross_origin
 from werkzeug.utils import secure_filename
 
 from .db import db
