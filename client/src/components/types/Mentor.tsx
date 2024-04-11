@@ -1,6 +1,6 @@
 export type Mentor = {
     name: String;
     email: String;
-    bio: String;
+    phoneNumber: String;
     skills: String[];
 };

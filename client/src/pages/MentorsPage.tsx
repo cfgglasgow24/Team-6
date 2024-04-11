@@ -30,6 +30,10 @@ export default function MentorsPage() {
         fetchMentors();
     }, []);
 
+    function formOnSubmit(mentor: Mentor) {
+        setMentors([...mentors, mentor]);
+    }
+
     return (
         <div className="bg-white py-5 px-5">
             <h1 className="py-6 text-4xl">Meet the Mentors!</h1>
@@ -39,7 +43,7 @@ export default function MentorsPage() {
                 ))}
             </div>
             <h1 className="py-6 text-2xl">Sign up to become a mentor!</h1>
-            <MentorForm />
+            <MentorForm onSubmit={formOnSubmit} />
         </div>
     );
 }

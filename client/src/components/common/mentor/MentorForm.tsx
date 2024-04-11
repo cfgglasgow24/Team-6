@@ -1,6 +1,11 @@
 import { useState } from "react";
+import { Mentor } from "../../types/Mentor";
 
-export default function MentorForm() {
+interface MentorFormProps {
+    onSubmit: (mentor: Mentor) => void;
+}
+
+export default function MentorForm({ onSubmit }: MentorFormProps) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -28,8 +33,8 @@ export default function MentorForm() {
                 },
                 body: JSON.stringify(formData),
             });
-            const responseData = await response.json();
-            console.log(responseData);
+            const responseData = (await response.json()) as Mentor;
+            onSubmit(responseData);
         } catch (error) {
             console.error("Error submitting form:", error);
         }
