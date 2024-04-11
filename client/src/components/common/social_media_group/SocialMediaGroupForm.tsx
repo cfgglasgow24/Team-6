@@ -1,22 +1,32 @@
+import { useState } from "react";
 import { SocialMediaGroup } from "../../types/SocialMediaGroup";
+import CustomInput from "../input/CustomInput";
 
-type SocialMediaGroupFormProps = {
+interface SocialMediaGroupFormProps {
     onFormSubmit: (group: SocialMediaGroup) => void;
-};
+}
 
-export default function SocialMediaGroupForm({ onFormSubmit }: SocialMediaGroupFormProps) {
+export default function SocialMediaGroupForm({
+    onFormSubmit,
+}: SocialMediaGroupFormProps) {
+    const [formData, setFormData] = useState({
+        name: "",
+        url: "",
+        description: "",
+        purpose: "",
+        creator: "",
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        const form = e.target as HTMLFormElement;
-        const formData = new FormData(form);
-
-        const name = formData.get("name") as string;
-        const url = formData.get("url") as string;
-        const type = formData.get("type") as string;
-        const description = formData.get("description") as string;
-        const purpose = formData.get("purpose") as string;
-        const creator = formData.get("creator") as string;
 
         try {
             const response = await fetch(
@@ -26,14 +36,7 @@ export default function SocialMediaGroupForm({ onFormSubmit }: SocialMediaGroupF
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({
-                        name,
-                        url,
-                        type,
-                        description,
-                        purpose,
-                        creator,
-                    }),
+                    body: JSON.stringify(formData),
                 }
             );
 
@@ -41,67 +44,54 @@ export default function SocialMediaGroupForm({ onFormSubmit }: SocialMediaGroupF
                 throw new Error("Failed to create social media group");
             }
 
-            onFormSubmit(await response.json() as SocialMediaGroup);
+            const responseData = (await response.json()) as SocialMediaGroup;
+            onFormSubmit(responseData);
 
-            form.reset();
+            setFormData({
+                name: "",
+                url: "",
+                description: "",
+                purpose: "",
+                creator: "",
+            });
         } catch (error) {
-            console.log(error);
+            console.error("Error submitting form:", error);
         }
     };
 
     return (
-        <div className='bg-white shadow rounded-lg py-3 px-3 max-w-md mx-auto'>
-            <form onSubmit={handleSubmit} className="flex flex-col">
-                <label className="text-black">Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    className="bg-secondary-50 mx-4 rounded-lg my-1"
+        <div className="bg-white shadow-lg rounded-lg py-8 px-8 max-w-md mx-auto">
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <CustomInput
+                    value={formData.name}
+                    handleInputChange={handleInputChange}
+                    label="Name"
                 />
-                
-                <label className="text-black">Url</label>
-                <input
-                    type="text"
-                    name="url"
-                    className="bg-secondary-50 mx-4 rounded-lg my-1"
+                <CustomInput
+                    value={formData.url}
+                    handleInputChange={handleInputChange}
+                    label="Url"
                 />
-                
-                <label className="text-black">Type</label>
-                <select
-                    name="type"
-                    className="bg-secondary-50 text-black mx-4 rounded-lg my-1"
-                >
-                    <option className="text-black" value="WA">WA</option>
-                    <option className="text-black" value="TG">TG</option>
-                    <option className="text-black" value="FB">FB</option>
-                </select>
-                
-                <label className="text-black">Description</label>
-                <input
-                    type="text"
-                    name="description"
-                    className="bg-secondary-50 mx-4 rounded-lg my-1"
+
+                <CustomInput
+                    value={formData.description}
+                    handleInputChange={handleInputChange}
+                    label="Description"
                 />
-                
-                <label className="text-black">Purpose</label>
-                <input
-                    type="text"
-                    name="purpose"
-                    className="bg-secondary-50 mx-4 rounded-lg my-1"
+                <CustomInput
+                    value={formData.purpose}
+                    handleInputChange={handleInputChange}
+                    label="Purpose"
                 />
-                
-                <label className="text-black">Creator</label>
-                <input
-                    type="text"
-                    name="creator"
-                    className="bg-secondary-50 mx-4 rounded-lg my-1"
+                <CustomInput
+                    value={formData.creator}
+                    handleInputChange={handleInputChange}
+                    label="Creator"
                 />
-                <br></br>
-                
                 <input
                     type="submit"
                     value="Add Social Media Group"
-                    className="font-medium text-black bg-primary-500 py-3 px-6 rounded-lg my-5"
+                    className="w-full font-medium bg-primary-800 hover:bg-primary-700 text-white py-3 px-6 rounded-lg mt-5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 cursor-pointer"
                 />
             </form>
         </div>

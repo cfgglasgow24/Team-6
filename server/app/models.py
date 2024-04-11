@@ -5,7 +5,6 @@ class SocialMediaGroup(db.Model):
     __tablename__ = "social_media_group"
     url = db.Column(db.String, primary_key=True)
     name = db.Column(db.String)
-    type = db.Column(db.String)
     description = db.Column(db.String)
     creator = db.Column(db.String)
     purpose = db.Column(db.String)
@@ -17,7 +16,6 @@ class SocialMediaGroup(db.Model):
         return {
             "url": self.url,
             "name": self.name,
-            "type": self.type,
             "description": self.description,
             "creator": self.creator,
             "purpose": self.purpose,

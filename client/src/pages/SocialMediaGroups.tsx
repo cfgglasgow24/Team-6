@@ -16,8 +16,6 @@ export default function SocialMediaGroups() {
                     }
                 );
 
-                console.log(response);
-
                 if (!response.ok) {
                     throw new Error("Failed to fetch groups");
                 }
@@ -26,7 +24,7 @@ export default function SocialMediaGroups() {
 
                 setGroups(data);
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
         };
 

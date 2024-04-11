@@ -16,15 +16,13 @@ export default function MentorsPage() {
                         method: "GET",
                     }
                 );
-                console.log(response);
                 if (!response.ok) {
                     throw new Error("Failed to fetch mentors");
                 }
                 const data = (await response.json()) as Mentor[];
-                console.log(data);
                 setMentors(data);
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
         };
 

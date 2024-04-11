@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Mentor } from "../../types/Mentor";
+import CustomInput from "../input/CustomInput";
 
 interface MentorFormProps {
     onSubmit: (mentor: Mentor) => void;
@@ -25,7 +26,6 @@ export default function MentorForm({ onSubmit }: MentorFormProps) {
         e.preventDefault();
 
         try {
-            console.log(formData);
             const response = await fetch("http://localhost:5000/api/mentors/", {
                 method: "POST",
                 headers: {
@@ -33,6 +33,9 @@ export default function MentorForm({ onSubmit }: MentorFormProps) {
                 },
                 body: JSON.stringify(formData),
             });
+            if (!response.ok) {
+                throw new Error("Failed to create mentor");
+            }
             const responseData = (await response.json()) as Mentor;
             setFormData({
                 name: "",
@@ -49,75 +52,30 @@ export default function MentorForm({ onSubmit }: MentorFormProps) {
     return (
         <div className="bg-white shadow-lg rounded-lg py-8 px-8 max-w-md mx-auto">
             <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label
-                        htmlFor="name"
-                        className="block text-sm font-medium text-gray-700"
-                    >
-                        Name
-                    </label>
-                    <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-4 py-2 bg-secondary-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                    />
-                </div>
-                <div>
-                    <label
-                        htmlFor="email"
-                        className="block text-sm font-medium text-gray-700"
-                    >
-                        Email
-                    </label>
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-4 py-2 bg-secondary-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                    />
-                </div>
-                <div>
-                    <label
-                        htmlFor="skills"
-                        className="block text-sm font-medium text-gray-700"
-                    >
-                        Skills
-                    </label>
-                    <input
-                        type="text"
-                        name="skills"
-                        id="skills"
-                        value={formData.skills}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-4 py-2 bg-secondary-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                    />
-                </div>
-                <div>
-                    <label
-                        htmlFor="phoneNumber"
-                        className="block text-sm font-medium text-gray-700"
-                    >
-                        Phone Number
-                    </label>
-                    <input
-                        type="text"
-                        name="phoneNumber"
-                        id="phoneNumber"
-                        value={formData.phoneNumber}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full px-4 py-2 bg-secondary-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                    />
-                </div>
-
+                <CustomInput
+                    value={formData.name}
+                    handleInputChange={handleInputChange}
+                    label="Name"
+                ></CustomInput>
+                <CustomInput
+                    value={formData.email}
+                    handleInputChange={handleInputChange}
+                    label="Email"
+                ></CustomInput>
+                <CustomInput
+                    value={formData.skills}
+                    handleInputChange={handleInputChange}
+                    label="Skills"
+                ></CustomInput>
+                <CustomInput
+                    value={formData.phoneNumber}
+                    handleInputChange={handleInputChange}
+                    label="Phone Number"
+                ></CustomInput>
                 <input
                     type="submit"
                     value="Sign Up"
-                    className="w-full font-medium bg-primary-500 text-white py-3 px-6 rounded-lg mt-5 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 cursor-pointer"
+                    className="w-full font-medium bg-primary-800 hover:bg-primary-700 text-white py-3 px-6 rounded-lg mt-5  focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 cursor-pointer"
                 />
             </form>
         </div>
