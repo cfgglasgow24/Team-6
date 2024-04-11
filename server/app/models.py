@@ -35,7 +35,7 @@ class Mentor(db.Model):
     __tablename__ = "mentor"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    email = db.Column(db.String, primary_key=True)
+    email = db.Column(db.String)
     phone_number = db.Column(db.String)
     skills = db.relationship(
         "Skill",
@@ -48,8 +48,8 @@ class Mentor(db.Model):
         return {
             "name": self.name,
             "email": self.email,
-            "phone_number": self.phone_number,
-            "region": self.region,
+            "phoneNumber": self.phone_number,
+            "skills": [skill.name for skill in self.skills],
         }
 
 
