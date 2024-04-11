@@ -48,6 +48,7 @@ function MainNavbar({ handleUserTypeSelect, otherUserType }: MainNavbarProps) {
                 <Link
                     to="/"
                     className="text-secondary-500 hover:text-secondary-700"
+                    className="hover:text-secondary-700"
                 >
                     Home
                 </Link>
@@ -66,12 +67,15 @@ function MainNavbar({ handleUserTypeSelect, otherUserType }: MainNavbarProps) {
                 <Link
                     to="/events"
                     className="text-secondary-500 hover:text-secondary-700"
+                    to="/events"
+                    className="hover:text-secondary-700"
                 >
                     Events
                 </Link>
                 <Link
                     to="/questionspage"
                     className="text-secondary-500 hover:text-secondary-700"
+                    className="hover:text-secondary-700"
                 >
                     Interview Prep
                 </Link>
