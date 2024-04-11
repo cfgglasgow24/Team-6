@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { SocialMediaGroup } from "../components/types/SocialMediaGroup";
+import SocialMediaGroupForm from "../components/common/social_media_group/SocialMediaGroupForm";
 
 export default function SocialMediaGroups() {
     const [groups, setGroups] = useState<SocialMediaGroup[]>([]);
@@ -12,11 +13,15 @@ export default function SocialMediaGroups() {
                         method: "GET",
                     }
                 );
+
                 console.log(response);
+
                 if (!response.ok) {
                     throw new Error("Failed to fetch groups");
                 }
+
                 const data = (await response.json()) as SocialMediaGroup[];
+
                 setGroups(data);
             } catch (error) {
                 console.log(error);
@@ -37,6 +42,12 @@ export default function SocialMediaGroups() {
                         </li>
                     ))}
             </ul>
+
+            <button type="submit" className="btn btn-primary">
+                Add a social media group
+            </button>
+
+            <SocialMediaGroupForm />
         </div>
     );
 }
