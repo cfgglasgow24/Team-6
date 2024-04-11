@@ -34,4 +34,5 @@ function NavLink({ to, children }: NavLinkProps) {
             {children}
         </Link>
     );
+
 }
