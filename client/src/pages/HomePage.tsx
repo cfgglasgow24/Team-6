@@ -1,9 +1,17 @@
+import React from 'react';
+import Header from '../components/common/homepage/header';
+import HeroSection from '../components/common/homepage/hero';
+import ServicesSection from '../components/common/homepage/services';
 import PageTemplate from "./PageTemplate";
 
-export default function HomePage() {
+const HomePage: React.FC = () => {
     return (
-        <PageTemplate title="Home Page">
-            <></>
-        </PageTemplate>
+        <div>
+            <Header />
+            <HeroSection />
+            <ServicesSection />
+        </div>
     );
-}
+};
+
+export default HomePage;
