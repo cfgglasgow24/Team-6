@@ -4,10 +4,28 @@ export default function Navbar() {
     return (
         <nav className="flex justify-between py-4 px-6 items-center">
             <div className="space-x-6">
-                <Link to="/" className="hover:text-secondary-700">
+                <Link
+                    to="/"
+                    className="text-secondary-500 hover:text-secondary-700 hover:text-secondary-700"
+                >
                     Home
                 </Link>
-                <Link to="/events" className="hover:text-secondary-700">
+                <Link
+                    to="/materials/dictionary"
+                    className="text-secondary-500 hover:text-secondary-700"
+                >
+                    Dictionary
+                </Link>
+                <Link
+                    to="/materials/cv-template"
+                    className="text-secondary-500 hover:text-secondary-700"
+                >
+                    CV Template
+                </Link>
+                <Link
+                    to="/events"
+                    className="text-secondary-500 hover:text-secondary-700 hover:text-secondary-700"
+                >
                     Events
                 </Link>
                 <Link to="/questionspage" className="hover:text-secondary-700">
