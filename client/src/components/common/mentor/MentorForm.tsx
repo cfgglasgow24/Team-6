@@ -34,6 +34,12 @@ export default function MentorForm({ onSubmit }: MentorFormProps) {
                 body: JSON.stringify(formData),
             });
             const responseData = (await response.json()) as Mentor;
+            setFormData({
+                name: "",
+                email: "",
+                skills: "",
+                phoneNumber: "",
+            });
             onSubmit(responseData);
         } catch (error) {
             console.error("Error submitting form:", error);
