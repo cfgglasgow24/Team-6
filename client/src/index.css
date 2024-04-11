@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    :root {
+        --text-50: #f2f2f2;
+        --text-100: #e6e6e6;
+        --text-200: #cccccc;
+        --text-300: #b3b3b3;
+        --text-400: #999999;
+        --text-500: #808080;
+        --text-600: #666666;
+        --text-700: #4d4d4d;
+        --text-800: #333333;
+        --text-900: #1a1a1a;
+        --text-950: #0d0d0d;
+
+        --background-50: #f2f2f2;
+        --background-100: #e6e6e6;
+        --background-200: #cccccc;
+        --background-300: #b3b3b3;
+        --background-400: #999999;
+        --background-500: #808080;
+        --background-600: #666666;
+        --background-700: #4d4d4d;
+        --background-800: #333333;
+        --background-900: #1a1a1a;
+        --background-950: #0d0d0d;
+
+        --primary-50: #faffe5;
+        --primary-100: #f5ffcc;
+        --primary-200: #ebff99;
+        --primary-300: #e0ff66;
+        --primary-400: #d6ff33;
+        --primary-500: #ccff00;
+        --primary-600: #a3cc00;
+        --primary-700: #7a9900;
+        --primary-800: #526600;
+        --primary-900: #293300;
+        --primary-950: #141a00;
+
+        --secondary-50: #efe6fe;
+        --secondary-100: #dfcdfe;
+        --secondary-200: #bf9bfd;
+        --secondary-300: #9f69fc;
+        --secondary-400: #7f37fb;
+        --secondary-500: #5f05fa;
+        --secondary-600: #4c04c8;
+        --secondary-700: #390396;
+        --secondary-800: #260264;
+        --secondary-900: #130132;
+        --secondary-950: #090119;
+    }
+}
