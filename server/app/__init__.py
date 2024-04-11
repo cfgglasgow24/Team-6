@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 
 from .routes import social_media_blueprint, mentor_blueprint, newsletter_user_blueprint
 from .db import db
@@ -6,6 +7,8 @@ from .db import db
 DATABASE_URL = "sqlite:///main.db"
 
 app = Flask(__name__)
+CORS(app)
+
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
