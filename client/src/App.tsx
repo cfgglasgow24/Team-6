@@ -3,6 +3,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import SocialMediaGroups from "./pages/SocialMediaGroups";
 
 export default function App() {
     return (
@@ -12,6 +13,7 @@ export default function App() {
                 <Routes>
                     <Route path="/" Component={HomePage} />
                     <Route path="*" Component={NotFoundPage} />
+                    <Route path="/social-media-groups" Component={SocialMediaGroups} />
                 </Routes>
             </div>
             <Footer />
