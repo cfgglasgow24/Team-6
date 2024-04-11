@@ -1,20 +1,11 @@
 import { useState } from "react";
-import { SocialMediaGroup } from "../../types/SocialMediaGroup";
 import CustomInput from "../input/CustomInput";
 
-interface SocialMediaGroupFormProps {
-    onFormSubmit: (group: SocialMediaGroup) => void;
-}
-
-export default function SocialMediaGroupForm({
-    onFormSubmit,
-}: SocialMediaGroupFormProps) {
+export default function NewsLetterForm() {
     const [formData, setFormData] = useState({
         name: "",
-        url: "",
-        description: "",
-        purpose: "",
-        creator: "",
+        email: "",
+        skills: "",
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +21,7 @@ export default function SocialMediaGroupForm({
 
         try {
             const response = await fetch(
-                "http://localhost:5000/api/social-media-groups/",
+                "http://localhost:5000/api/newsletter-users/",
                 {
                     method: "POST",
                     headers: {
@@ -39,20 +30,13 @@ export default function SocialMediaGroupForm({
                     body: JSON.stringify(formData),
                 }
             );
-
             if (!response.ok) {
-                throw new Error("Failed to create social media group");
+                throw new Error("Failed to create mentor");
             }
-
-            const responseData = (await response.json()) as SocialMediaGroup;
-            onFormSubmit(responseData);
-
             setFormData({
                 name: "",
-                url: "",
-                description: "",
-                purpose: "",
-                creator: "",
+                email: "",
+                skills: "",
             });
         } catch (error) {
             console.error("Error submitting form:", error);
@@ -69,32 +53,20 @@ export default function SocialMediaGroupForm({
                     type="text"
                 />
                 <CustomInput
-                    value={formData.url}
+                    value={formData.email}
                     handleInputChange={handleInputChange}
-                    label="Url"
-                    type="text"
+                    label="Email"
+                    type="email"
                 />
                 <CustomInput
-                    value={formData.description}
+                    value={formData.skills}
                     handleInputChange={handleInputChange}
-                    label="Description"
-                    type="text"
-                />
-                <CustomInput
-                    value={formData.purpose}
-                    handleInputChange={handleInputChange}
-                    label="Purpose"
-                    type="text"
-                />
-                <CustomInput
-                    value={formData.creator}
-                    handleInputChange={handleInputChange}
-                    label="Creator"
+                    label="Skills"
                     type="text"
                 />
                 <input
                     type="submit"
-                    value="Add Social Media Group"
+                    value="Sign Up"
                     className="w-full font-medium bg-primary-600 hover:bg-primary-700 text-white py-3 px-6 rounded-lg mt-5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 cursor-pointer"
                 />
             </form>

@@ -1,3 +1,9 @@
+import PageTemplate from "./PageTemplate";
+
 export default function EventsPage() {
-    return <div></div>;
+    return (
+        <PageTemplate title="Events">
+            <></>
+        </PageTemplate>
+    );
 }
