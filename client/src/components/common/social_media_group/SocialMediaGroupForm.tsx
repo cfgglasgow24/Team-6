@@ -91,7 +91,7 @@ export default function SocialMediaGroupForm({
                 <input
                     type="submit"
                     value="Add Social Media Group"
-                    className="w-full font-medium bg-primary-800 hover:bg-primary-700 text-white py-3 px-6 rounded-lg mt-5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 cursor-pointer"
+                    className="w-full font-medium bg-primary-600 hover:bg-primary-700 text-white py-3 px-6 rounded-lg mt-5 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 cursor-pointer"
                 />
             </form>
         </div>
