@@ -1,130 +1,38 @@
-import { useState } from "react";
-import { UserType } from "../types/UserType";
 import { Link } from "react-router-dom";
 
-interface NavBarComponentProps {
-  handleUserTypeSelect: (userType: UserType) => void;
-}
-
 export default function Navbar() {
-  const [userType, setUserType] = useState<UserType>(() => {
-    const storedUserType = localStorage.getItem("userType");
-    return storedUserType ? JSON.parse(storedUserType) : null;
-  });
-
-  function handleUserTypeSelect(userType: UserType) {
-    setUserType(userType);
-    localStorage.setItem("userType", JSON.stringify(userType));
-  }
-
-  if (userType === UserType.REFUGEE) {
-    return <RefugeeNavbar handleUserTypeSelect={handleUserTypeSelect} />;
-  } else if (userType === UserType.COMPANY) {
-    return <CompanyNavbar handleUserTypeSelect={handleUserTypeSelect} />;
-  } else {
-    return <GetUserTypePopup handleUserTypeSelect={handleUserTypeSelect} />;
-  }
+    return (
+        <nav className="w-full py-4 px-6 mx-auto flex items-center justify-between relative">
+            <div className="absolute left-6 top-1/2 transform -translate-y-1/2">
+                <img
+                    src="/assets/Code Division Logo.png"
+                    alt="Code Division"
+                    className="h-[40px]"
+                ></img>
+            </div>
+            <div className="flex justify-center mx-auto space-x-10">
+                <NavLink to="/">Home</NavLink>
+                <NavLink to="/mentors">Mentorship Opportunities</NavLink>
+                <NavLink to="/materials/cv-template">CV Template</NavLink>
+                <NavLink to="/materials/dictionary">Dictionary</NavLink>
+                <NavLink to="/questionspage">Interview Prep</NavLink>
+                <NavLink to="/social-media-groups">Social Media Groups</NavLink>
+                <NavLink to="/newsletter">Newsletter</NavLink>
+            </div>
+        </nav>
+    );
 }
 
-function RefugeeNavbar({ handleUserTypeSelect }: NavBarComponentProps) {
-  return (
-    <nav className="flex justify-between py-4 px-6 items-center">
-      <div className="space-x-6">
-        <Link to="/" className="text-secondary-500 hover:text-secondary-700">
-          Home
-        </Link>
-        <Link
-          to="/events"
-          className="text-secondary-500 hover:text-secondary-700"
-        >
-          Events
-        </Link>
-        <Link
-          to="/mentors"
-          className="text-secondary-500 hover:text-secondary-700"
-        >
-          Mentors
-        </Link>
-        <Link
-          to="/social-media-groups"
-          className="text-secondary-500 hover:text-secondary-700"
-        >
-          Social Media Groups
-        </Link>
-      </div>
-      <div>
-        <button
-          onClick={() => handleUserTypeSelect(UserType.COMPANY)}
-          className="px-4 py-2 text-white bg-secondary-500 rounded hover:bg-secondary-700 transition-colors duration-200 ease-in-out"
-        >
-          Switch to company
-        </button>
-      </div>
-    </nav>
-  );
+interface NavLinkProps {
+    to: string;
+    children: React.ReactNode;
 }
 
-function CompanyNavbar({ handleUserTypeSelect }: NavBarComponentProps) {
-  return (
-    <nav className="flex justify-between py-4 px-6 items-center">
-      <div className="space-x-6">
-        <Link to="/" className="hover:text-secondary-700">
-          Home
+function NavLink({ to, children }: NavLinkProps) {
+    return (
+        <Link to={to} className="text-gray-600 hover:text-gray-800 text-lg">
+            {children}
         </Link>
-        <Link to="/events" className="hover:text-secondary-700">
-          Events
-        </Link>
-        <Link to="/questionspage" className="hover:text-secondary-700">
-          Interview Prep
-        </Link>
-        <Link to="/mentors" className="hover:text-secondary-700">
-          Mentorship Opportunities
-        </Link>
-      </div>
-      <div>
-        <button
-          onClick={() => handleUserTypeSelect(UserType.REFUGEE)}
-          className="px-4 py-2 text-white bg-secondary-500 rounded hover:bg-secondary-700 transition-colors duration-200 ease-in-out"
-        >
-          Switch to refugee
-        </button>
-      </div>
-    </nav>
-  );
-}
+    );
 
-function GetUserTypePopup({ handleUserTypeSelect }: NavBarComponentProps) {
-  return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-        <UserTypePopUpButton
-          userType={UserType.REFUGEE}
-          setUserType={handleUserTypeSelect}
-        />
-        <UserTypePopUpButton
-          userType={UserType.COMPANY}
-          setUserType={handleUserTypeSelect}
-        />
-      </div>
-    </div>
-  );
-}
-
-interface UserTypePopUpButtonProps {
-  userType: UserType;
-  setUserType: (userType: UserType) => void;
-}
-
-function UserTypePopUpButton({
-  userType,
-  setUserType,
-}: UserTypePopUpButtonProps) {
-  return (
-    <button
-      onClick={() => setUserType(userType)}
-      className="bg-secondary-600 hover:bg-secondary-700 text-white font-bold py-2 px-4 mr-2 rounded focus:outline-none focus:shadow-outline"
-    >
-      {userType}
-    </button>
-  );
 }

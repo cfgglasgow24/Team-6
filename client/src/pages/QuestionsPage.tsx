@@ -80,4 +80,3 @@ export default function QuestionsPage() {
       </div>
     </div>
   );
-}

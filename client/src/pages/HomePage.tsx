@@ -1,3 +1,9 @@
+import PageTemplate from "./PageTemplate";
+
 export default function HomePage() {
-    return <div>Code Division</div>;
+    return (
+        <PageTemplate title="Home Page">
+            <></>
+        </PageTemplate>
+    );
 }
