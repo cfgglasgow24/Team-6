@@ -40,16 +40,18 @@ def get_mentors():
 def add_mentor():
     name = request.form["name"]
     email = request.form["email"]
-    region = request.form["region"]
-    photo = request.files["photo"]
+    skills = [str(skill).strip() for skill in request.form.get("skills").split(",")]
+    phone_number = request.files["phoneNumber"]
 
-    if photo:
-        filename = secure_filename(photo.filename)
-        photo_path = os.path.join("path/to/save/photos", filename)
-        photo.save(photo_path)
-        mentor = Mentor(name=name, email=email, region=region, photo=filename)
-    else:
-        mentor = Mentor(name=name, email=email, region=region)
+    mentor = Mentor(
+        name=name,
+        email=email,
+        phone_number=phone_number,
+    )
+
+    for skill_name in skills:
+        skill, _ = Skill.get_or_create(skill_name)
+        mentor.skills.append(skill)
 
     db.session.add(mentor)
     db.session.commit()
