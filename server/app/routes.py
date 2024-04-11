@@ -38,10 +38,10 @@ def get_mentors():
 
 @mentor_blueprint.route("/", methods=["POST"])
 def add_mentor():
-    name = request.form["name"]
-    email = request.form["email"]
-    skills = [str(skill).strip() for skill in request.form.get("skills").split(",")]
-    phone_number = request.files["phoneNumber"]
+    name = request.json["name"]
+    email = request.json["email"]
+    skills = [str(skill).strip() for skill in request.json.get("skills").split(",")]
+    phone_number = request.json["phonenumber"]
 
     mentor = Mentor(
         name=name,
@@ -49,14 +49,15 @@ def add_mentor():
         phone_number=phone_number,
     )
 
+    db.session.add(mentor)
+
     for skill_name in skills:
         skill, _ = Skill.get_or_create(skill_name)
         mentor.skills.append(skill)
 
-    db.session.add(mentor)
     db.session.commit()
 
-    return mentor
+    return jsonify(mentor.to_dict())
 
 
 newsletter_user_blueprint = Blueprint("newsletter-users", __name__)
@@ -64,19 +65,18 @@ newsletter_user_blueprint = Blueprint("newsletter-users", __name__)
 
 @newsletter_user_blueprint.route("/", methods=["POST"])
 def add_newsletter_user():
-    for key, item in request.json.items():
-        print(key, item)
     email = request.json.get("email")
     name = request.json.get("name")
     skills = [str(skill).strip() for skill in request.json.get("skills").split(",")]
 
     user = NewsletterUser(email=email, name=name)
 
+    db.session.add(user)
+
     for skill_name in skills:
         skill, _ = Skill.get_or_create(skill_name)
         user.skills.append(skill)
 
-    db.session.add(user)
     db.session.commit()
 
     return jsonify(user.to_dict())

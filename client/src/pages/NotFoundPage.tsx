@@ -1,3 +1,9 @@
+import PageTemplate from "./PageTemplate";
+
 export default function NotFoundPage() {
-    return <div>404 Not Found</div>;
+    return (
+        <PageTemplate title="404 Not Found">
+            <></>
+        </PageTemplate>
+    );
 }
