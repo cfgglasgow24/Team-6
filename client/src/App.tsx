@@ -3,6 +3,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import SocialMediaGroups from "./pages/SocialMediaGroups";
 import EventsPage from "./pages/EventsPage";
 
 export default function App() {
@@ -14,6 +15,10 @@ export default function App() {
                     <Route path="/" Component={HomePage} />
                     <Route path="/events" Component={EventsPage} />
                     <Route path="*" Component={NotFoundPage} />
+                    <Route
+                        path="/social-media-groups"
+                        Component={SocialMediaGroups}
+                    />
                 </Routes>
             </div>
             <Footer />
