@@ -1,3 +1,4 @@
 export type Question = {
-    question: String
-}
+  id: number;
+  question: String;
+};
