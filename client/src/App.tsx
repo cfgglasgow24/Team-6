@@ -8,6 +8,7 @@ import CVPage from "./pages/CVPage";
 import SocialMediaGroups from "./pages/SocialMediaGroups";
 import MentorsPage from "./pages/MentorsPage";
 import QuestionsPage from "./pages/QuestionsPage";
+import NewsLetterPage from "./pages/NewsLetterPage";
 
 export default function App() {
     return (
@@ -27,6 +28,7 @@ export default function App() {
                         path="/social-media-groups"
                         Component={SocialMediaGroups}
                     />
+                    <Route path="/newsletter" Component={NewsLetterPage} />
                     <Route path="*" Component={NotFoundPage} />
                 </Routes>
             </div>

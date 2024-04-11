@@ -41,7 +41,7 @@ def add_mentor():
     name = request.json["name"]
     email = request.json["email"]
     skills = [str(skill).strip() for skill in request.json.get("skills").split(",")]
-    phone_number = request.json["phoneNumber"]
+    phone_number = request.json["phonenumber"]
 
     mentor = Mentor(
         name=name,
@@ -49,11 +49,12 @@ def add_mentor():
         phone_number=phone_number,
     )
 
+    db.session.add(mentor)
+
     for skill_name in skills:
         skill, _ = Skill.get_or_create(skill_name)
         mentor.skills.append(skill)
 
-    db.session.add(mentor)
     db.session.commit()
 
     return jsonify(mentor.to_dict())
@@ -70,11 +71,12 @@ def add_newsletter_user():
 
     user = NewsletterUser(email=email, name=name)
 
+    db.session.add(user)
+
     for skill_name in skills:
         skill, _ = Skill.get_or_create(skill_name)
         user.skills.append(skill)
 
-    db.session.add(user)
     db.session.commit()
 
     return jsonify(user.to_dict())
