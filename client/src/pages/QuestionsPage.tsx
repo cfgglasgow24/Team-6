@@ -75,12 +75,12 @@ export default function QuestionsPage() {
                         />
                         {inputValidity[index] &&
                             inputStates[index].length > 40 && (
-                                <p className="text-primary-800 success-message">
+                                <p className="text-primary-800 success-message px-3">
                                     That's a good answer.
                                 </p>
                             )}
                         {!inputValidity[index] && (
-                            <p className="text-red-500 error-message">
+                            <p className="text-red-500 error-message px-3">
                                 You should add more detail about your career!
                             </p>
                         )}
