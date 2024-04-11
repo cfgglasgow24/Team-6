@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { SocialMediaGroup } from "../components/types/SocialMediaGroup";
 import SocialMediaGroupForm from "../components/common/social_media_group/SocialMediaGroupForm";
-// import axios from 'axios';
 
 export default function SocialMediaGroups() {
     const [groups, setGroups] = useState<SocialMediaGroup[]>([]);
     useEffect(() => {
-        document.title = "Social Media Groups";
         const fetchSocialMediaGroups = async () => {
             try {
                 const response = await fetch(
@@ -15,15 +13,15 @@ export default function SocialMediaGroups() {
                         method: "GET",
                     }
                 );
-                
+
                 console.log(response);
-                
+
                 if (!response.ok) {
                     throw new Error("Failed to fetch groups");
                 }
-                
+
                 const data = (await response.json()) as SocialMediaGroup[];
-                
+
                 setGroups(data);
             } catch (error) {
                 console.log(error);
@@ -34,9 +32,8 @@ export default function SocialMediaGroups() {
     }, []);
 
     return (
-        <>
-            <div className="text-primary-500">Social Media Groups</div>
-
+        <div className="text-primary-500">
+            <h2>Social Media Groups</h2>
             <ul>
                 {groups &&
                     groups.map((group, index) => (
@@ -51,6 +48,6 @@ export default function SocialMediaGroups() {
             </button>
 
             <SocialMediaGroupForm />
-        </>
+        </div>
     );
 }
